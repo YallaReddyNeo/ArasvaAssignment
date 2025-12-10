@@ -1,9 +1,7 @@
 ﻿using Arasva.Core.DTO.Create;
 using Arasva.Core.DTO.Update;
-using Arasva.Core.Interface;
 using Arasva.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.RateLimiting;
 
 namespace ArasvaAssignment.Controllers
 {

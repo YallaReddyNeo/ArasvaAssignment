@@ -1,17 +1,20 @@
-﻿using Arasva.Core.Interface;
+﻿using Arasva.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace ArasvaAssignment.Controllers
 {
+    /// <summary>
+    /// Added by YReddy by #RateLimit
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     [EnableRateLimiting("RateLimitPolicy")]
     public class RateLimitController : Controller
     {
-        private readonly IRateLimitRepository _ratelimitrepo; 
+        private readonly IRateLimitService _ratelimitrepo; 
 
-        public RateLimitController(IRateLimitRepository ratelimitrepo)
+        public RateLimitController(IRateLimitService ratelimitrepo)
         {
             _ratelimitrepo = ratelimitrepo; 
         }

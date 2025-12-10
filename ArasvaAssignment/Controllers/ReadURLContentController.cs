@@ -1,17 +1,20 @@
 ﻿using Arasva.Core;
-using Arasva.Core.Interface;
+using Arasva.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArasvaAssignment.Controllers
 {
+    /// <summary>
+    /// Added by YReddy for #URLContentRead
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class ReadURLContentController : Controller
     {
-        private readonly IReadURLContentRepository _ulrreaderrepo;
+        private readonly IReadURLContentService _ulrreaderrepo;
         private readonly IWebHostEnvironment _env;
 
-        public ReadURLContentController(IReadURLContentRepository ulrreaderrepo, IWebHostEnvironment env)
+        public ReadURLContentController(IReadURLContentService ulrreaderrepo, IWebHostEnvironment env)
         {
             _ulrreaderrepo = ulrreaderrepo;
             _env = env; 

@@ -1,10 +1,10 @@
-﻿using Arasva.Core.Interface;
+﻿using Arasva.Core.Services.Interfaces;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
-namespace Arasva.Core.Repository
+namespace Arasva.Core.Services.Implementation
 {
-    public class RateLimitRepository : IRateLimitRepository
+    public class RateLimitService : IRateLimitService
     {
         //// Configuration: Max requests (X) per Window
         //private const int MaxRequests = 2;

@@ -1,14 +1,17 @@
-﻿using Arasva.Core.Interface;
+﻿using Arasva.Core.Services.Interfaces;
 
-namespace Arasva.Core.Repository
+namespace Arasva.Core.Services.Implementation
 {
-    public class ReadURLContentRepository : IReadURLContentRepository
+    /// <summary>
+    /// #URLContentRead
+    /// </summary>
+    public class ReadURLContentService : IReadURLContentService
     {
         private static readonly HttpClient _httpClient = new HttpClient();
 
 
         /// <summary>
-        /// Method is used to Read the content from upload file and post the reponse into the file
+        /// Method is used to Read the content from upload file and post the reponse into the file #URLContentRead
         /// </summary>
         /// <param name="filepath"></param>
         /// <param name="path"></param>

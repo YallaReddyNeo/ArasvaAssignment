@@ -1,6 +1,6 @@
-﻿namespace Arasva.Core.Interface
+﻿namespace Arasva.Core.Services.Interfaces
 {
-    public interface IReadURLContentRepository
+    public interface IReadURLContentService
     {
         Task<GlobalResponse> ReadURLContent(string filepath, string path);
     }

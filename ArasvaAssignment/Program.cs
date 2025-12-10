@@ -1,6 +1,5 @@
 using Arasva.Core;
 using Arasva.Core.Interface;
-using Arasva.Core.Repository;
 using Arasva.Core.Services.Implementation;
 using Arasva.Core.Services.Interfaces;
 using Arasva.Data.Data;
@@ -18,12 +17,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Add all repositories  
-builder.Services.AddTransient<IReadURLContentRepository, ReadURLContentRepository>(); 
-builder.Services.AddSingleton<IRateLimitRepository, RateLimitRepository>();
+builder.Services.AddTransient<IReadURLContentService, ReadURLContentService>(); 
+builder.Services.AddSingleton<IRateLimitService, RateLimitService>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IBookRepository, BookRepository>();
-
+builder.Services.AddScoped<IBookRepository, BookRepository>(); 
 builder.Services.AddScoped<IBookService, BookService>();
 
 builder.Services.AddScoped<IMemberRepository, MemberRepository>();
