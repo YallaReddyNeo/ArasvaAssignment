@@ -30,6 +30,9 @@ builder.Services.AddScoped<IMemberService, MemberService>();
 builder.Services.AddScoped<IBorrowingHistoryRepository, BorrowingHistoryRepository>();
 builder.Services.AddScoped<IBorrowingService, BorrowingService>();
 
+//Read data from appsetting 
+string rateLimit = builder.Configuration["RateLimit"].ToString();
+string rateLimitTime = builder.Configuration["RateLimitTime"].ToString();
 
 //#RateLimit
 builder.Services.AddRateLimiter(options =>
@@ -52,8 +55,8 @@ builder.Services.AddRateLimiter(options =>
             factory: partition => new FixedWindowRateLimiterOptions
             {
                 AutoReplenishment = true,
-                PermitLimit = 2,
-                Window = TimeSpan.FromSeconds(60),
+                PermitLimit = int.Parse(rateLimit),
+                Window = TimeSpan.FromMinutes(int.Parse(rateLimitTime)),
                 QueueLimit = 0 // Reject immediately if limit is exceeded
             });
     });
@@ -67,7 +70,7 @@ builder.Services.AddRateLimiter(options =>
         var response = new GlobalResponse
         { 
             success = false,   
-            errorMessage = "Rate limit exceeded. Please try again later."
+            error = "Rate limit exceeded. Please try again later."
         };
 
         await context.HttpContext.Response.WriteAsJsonAsync(response, cancellationToken: token);

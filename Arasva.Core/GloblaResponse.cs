@@ -10,7 +10,7 @@ namespace Arasva.Core
     {
         public bool success { get; set; } = true;
         public string? message { get; set; }
-        public string? errorMessage { get; set; } = null; 
+        public string? error { get; set; } = null; 
         public dynamic data { get; set; } 
     }
 

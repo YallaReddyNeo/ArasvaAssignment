@@ -85,7 +85,7 @@ namespace Arasva.Core.Services.Implementation
             catch (Exception ex)
             {
                 apiResponse.success = false;
-                apiResponse.errorMessage = string.Format(AppConstants.ErrorMessage, ex.Message); 
+                apiResponse.error = string.Format(AppConstants.ErrorMessage, ex.Message); 
             }
             return apiResponse;
         }

@@ -33,13 +33,13 @@ namespace Arasva.Core.Services.Implementation
 
                 //return response 
                 apiResponse.message = res ? string.Format(AppConstants.ActionSuccess) : null;
-                apiResponse.errorMessage = res ? null : "Rate limit exceeded. Please try again later.";
+                apiResponse.error = res ? null : "Rate limit exceeded. Please try again later.";
                 apiResponse.success = res;
             }
             catch (Exception ex)
             {
                 apiResponse.success = false;
-                apiResponse.errorMessage = string.Format(AppConstants.ErrorMessage, ex.Message);
+                apiResponse.error = string.Format(AppConstants.ErrorMessage, ex.Message);
             }
 
             return apiResponse;
