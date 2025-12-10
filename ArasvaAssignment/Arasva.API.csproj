@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\URLReaderController.cs" />
+    <Compile Remove="Controllers\WeatherForecastController.cs" />
+    <Compile Remove="WeatherForecast.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,12 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Arasva.Data\Arasva.Data.csproj" />
+    <Folder Include="Helper\" />
+    <Folder Include="SQL changes\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helper\" />
-    <Folder Include="SQL changes\" />
+    <ProjectReference Include="..\Arasva.Core\Arasva.Core.csproj" />
+    <ProjectReference Include="..\Arasva.Data\Arasva.Data.csproj" />
   </ItemGroup>
 
 </Project>
