@@ -31,7 +31,7 @@ builder.Services.AddScoped<IBorrowingHistoryRepository, BorrowingHistoryReposito
 builder.Services.AddScoped<IBorrowingService, BorrowingService>();
 
 //Read data from appsetting 
-string rateLimit = builder.Configuration["RateLimit"].ToString();
+string rateLimit = builder.Configuration["RateLimitMaxCount"].ToString();
 string rateLimitTime = builder.Configuration["RateLimitTime"].ToString();
 
 //#RateLimit
