@@ -1,0 +1,4 @@
+https://google.com
+https://microsoft.com
+https://api.github.com
+https://invalid-url-test.com
