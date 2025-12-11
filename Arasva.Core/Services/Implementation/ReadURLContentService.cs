@@ -1,4 +1,5 @@
 ﻿using Arasva.Core.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace Arasva.Core.Services.Implementation
 {
@@ -8,7 +9,12 @@ namespace Arasva.Core.Services.Implementation
     public class ReadURLContentService : IReadURLContentService
     {
         private static readonly HttpClient _httpClient = new HttpClient();
+        private readonly IConfiguration _configuration;
 
+        public ReadURLContentService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
         /// <summary>
         /// Method is used to Read the content from upload file and post the reponse into the file #URLContentRead
@@ -19,17 +25,19 @@ namespace Arasva.Core.Services.Implementation
         public async Task<GlobalResponse> ReadURLContent(string filepath, string path)
         {
             GlobalResponse apiResponse = new();
-              
+            var maxconcurrents = int.Parse(_configuration["URLReadMaxConcurrentRequests"].ToString());
+            string outputFile = "";
+
             try
 			{
                 //File path related changes
                 var urls = await File.ReadAllLinesAsync(filepath);
                 var filename = Path.GetFileName(filepath);  
-                string outputFile = string.Format("{0}\\{1}\\Response_{2}", path, AppConstants.URLUploads, filename);
+                outputFile = string.Format("{0}\\{1}\\Response_{2}", path, AppConstants.URLUploads, filename);
 
                 //Do the Semaphore for 
                 //Point 2: Limit the maximum number of concurrent requests to N
-                var semaphore = new SemaphoreSlim(3);
+                var semaphore = new SemaphoreSlim(maxconcurrents);
                 var tasks = new List<Task>();
 
                 //Write the SteamWriter
@@ -81,6 +89,7 @@ namespace Arasva.Core.Services.Implementation
                 //return response 
                 apiResponse.message = string.Format(AppConstants.ActionSuccess);
                 apiResponse.success = true;
+                apiResponse.data = "URL read content written to file: " + outputFile;
             }
             catch (Exception ex)
             {

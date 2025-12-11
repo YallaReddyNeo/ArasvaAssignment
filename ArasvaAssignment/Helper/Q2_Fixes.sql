@@ -133,15 +133,15 @@ GO
 
 
 
---=========== STEP 4: Question ===========
---- List all courses with their module counts
+--=========== STEP 4: Question asked in requirement and respected answers ===========
+--- Deliverables 2.1 : List all courses with their module counts
 SELECT c.[CourseName] CourseName, COUNT(m.Id) TotalModuleCount
 FROM dbo.Course c WITH(NOLOCK) 
 LEFT JOIN dbo.Module m WITH(NOLOCK) ON m.CourseId = c.Id
 GROUP BY c.[CourseName]
 
 
---- List all students enrolled in a given course.
+--- Deliverables 2.2 :List all students enrolled in a given course.
 SELECT s.Id, s.FirstName, s.LastName, s.Email, c.[CourseName], e.EnrollmentDate
 FROM dbo.EnrollmentHistory e WITH(NOLOCK) 
 LEFT JOIN dbo.Course c WITH(NOLOCK)  ON c.Id = e.CourseId
@@ -150,7 +150,7 @@ LEFT JOIN dbo.Student s WITH(NOLOCK) ON s.Id = e.StudentId
 ORDER BY s.Id
 
 
---- List the top 3 courses with the highest number of enrollments.
+--- Deliverables 2.3 :List the top 3 courses with the highest number of enrollments.
 SELECT TOP 3 c.[CourseName], COUNT(e.Id) AS TotalEnrollmentCount
 FROM dbo.Course c
 JOIN dbo.EnrollmentHistory e ON C.Id = E.CourseID 
@@ -159,10 +159,10 @@ GROUP BY c.[CourseName] -- Group by Name
 ORDER BY TotalEnrollmentCount DESC; 
 
 
----- For a given student, list all courses they are enrolled in along with the enrollment date.
+---- Deliverables 2.4 :For a given student, list all courses they are enrolled in along with the enrollment date.
 SELECT s.Id, s.FirstName, s.LastName, s.Email, c.Id, C.[CourseName], E.EnrollmentDate
 FROM dbo.Student s WITH(NOLOCK)  
   JOIN dbo.EnrollmentHistory e WITH(NOLOCK) ON s.Id = e.StudentId
   JOIN dbo.Course c WITH(NOLOCK) ON c.Id = e.CourseId
---WHERE S.Email = 'john.doe@example.com' -- Filter by email for example
+WHERE S.Email = 'john.doe@example.com' -- Filter by email for example
 ORDER BY s.Id, c.CourseName; -- Order by the most recent enrollment first

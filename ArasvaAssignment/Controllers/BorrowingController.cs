@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ArasvaAssignment.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class BorrowingController : Controller
     {
@@ -19,57 +19,44 @@ namespace ArasvaAssignment.Controllers
         /// <summary>
         /// Member borrows a book.
         /// </summary>
-        [HttpPost("Borrow")]
-        [ActionName("Borrow")]
+        [HttpPost("borrowbook")] 
         public async Task<IActionResult> Borrow([FromBody] BorrowRequestDTO dto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            try
-            {
-                var response = await _service.BorrowBookAsync(dto);
-                return response.success ? Ok(response) : BadRequest(response);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var response = await _service.BorrowBookAsync(dto);
+            return response.success ? Ok(response) : BadRequest(response);
         }
 
         /// <summary>
         /// Member returns a borrowed book.
         /// </summary>
-        [HttpPost("Return")]
-        [ActionName("Return")]
+        [HttpPost("returnbook")] 
         public async Task<IActionResult> Return([FromBody] ReturnRequestDTO dto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            var response = await _service.ReturnBookAsync(dto);
+            return response.success ? Ok(response) : BadRequest(response);
 
-            try
-            {
-                var response = await _service.ReturnBookAsync(dto);
-                return response.success ? Ok(response) : BadRequest(response);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            //if (!ModelState.IsValid)
+            //    return BadRequest(ModelState);
+
+            //try
+            //{
+            //    var response = await _service.ReturnBookAsync(dto);
+            //    return response.success ? Ok(response) : BadRequest(response);
+            //}
+            //catch (KeyNotFoundException ex)
+            //{
+            //    return NotFound(ex.Message);
+            //}
+            //catch (InvalidOperationException ex)
+            //{
+            //    return BadRequest(ex.Message);
+            //}
         }
 
         /// <summary>
         /// Complete borrowing history for a given member.
         /// </summary>
-        [HttpGet("Member/{memberId}/History")]
+        [HttpGet("borrowhistory/{memberId}")]
         public async Task<IActionResult> GetMemberHistory(int memberId)
         {
             try
