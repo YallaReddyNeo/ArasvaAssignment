@@ -4,11 +4,6 @@ using Arasva.Core.DTO.Update;
 using Arasva.Core.Interface;
 using Arasva.Core.Models;
 using Arasva.Core.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Arasva.Core.Services.Implementation
 {
@@ -21,7 +16,7 @@ namespace Arasva.Core.Services.Implementation
             _repo = repo;
         }
 
-        public async Task<GlobalResponse<IEnumerable<BookFullResponseDTO>>> GetAllAsync(bool? isAvailable = null, string? author = null)
+        public async Task<GlobalResponse> GetAllAsync(bool? isAvailable = null, string? author = null)
         {
             IEnumerable<Book> books;
 
@@ -49,7 +44,7 @@ namespace Arasva.Core.Services.Implementation
                 ModifiedDate = b.ModifiedDate
             });
 
-            return new GlobalResponse<IEnumerable<BookFullResponseDTO>>
+            return new GlobalResponse()
             {
                 success = true,
                 message = string.Format(AppConstants.ActionSuccess),
@@ -57,38 +52,13 @@ namespace Arasva.Core.Services.Implementation
                 data = data,
                 totalcount = books.Count()
             };
-        }
-
-        //public async Task<GlobalResponse<IEnumerable<BookFullResponseDTO>>> GetAllAsync()
-        //{
-        //    var books = await _repo.GetAllAsync();
-
-        //    return new GlobalResponse<IEnumerable<BookFullResponseDTO>>
-        //    {
-        //        Success = true,
-        //        Message = string.Format(AppConstants.ActionSuccess),
-        //        ErrorMessage = null,
-        //        Data = books.Select(b => new BookFullResponseDTO
-        //        {
-        //            Id = b.Id,
-        //            Name = b.Name,
-        //            Author = b.Author,
-        //            Pages = b.Pages,
-        //            Category = b.Category,
-        //            IsActive = b.IsActive,
-        //            CreatedBy = b.CreatedBy,
-        //            CreatedDate = b.CreatedDate,
-        //            ModifiedBy = b.ModifiedBy,
-        //            ModifiedDate = b.ModifiedDate
-        //        }),
-        //        TotalCount = books.Count()
-        //    };
-        //}
+        } 
 
         public async Task<GlobalResponse<BookFullResponseDTO?>> GetByIdAsync(int id)
         {
             var b = await _repo.GetByIdAsync(id);
-            if (b == null) return null;
+            if (b == null) 
+                return null;
 
             return new GlobalResponse<BookFullResponseDTO?>
             {

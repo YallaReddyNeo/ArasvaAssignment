@@ -11,7 +11,7 @@ namespace Arasva.Core.Services.Interfaces
 {
     public interface IBookService
     {
-        Task<GlobalResponse<IEnumerable<BookFullResponseDTO>>> GetAllAsync(bool? isAvailable = null, string? author = null);
+        Task<GlobalResponse> GetAllAsync(bool? isAvailable = null, string? author = null);
         //Task<GlobalResponse<IEnumerable<BookFullResponseDTO>>> GetAllAsync();
         Task<GlobalResponse<BookFullResponseDTO?>> GetByIdAsync(int id);
         Task<GlobalResponse<BookCreateResponseDTO>> CreateAsync(BookCreateDTO dto);
