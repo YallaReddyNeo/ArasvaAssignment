@@ -82,20 +82,20 @@ namespace Arasva.Core.Services.Implementation
 
                 return new GlobalResponse<BorrowResponseDTO>
                 {
-                    Success = true,
-                    Message = string.Format(AppConstants.ActionSuccess),
-                    ErrorMessage = null,
-                    Data = borrowBook
+                    success = true,
+                    message = string.Format(AppConstants.ActionSuccess),
+                    error = null,
+                    data = borrowBook
                 };
             }
             catch (Exception ex)
             {
                 return new GlobalResponse<BorrowResponseDTO>
                 {
-                    Success = false,
-                    Message = null,
-                    ErrorMessage = string.Format(AppConstants.ErrorMessage, ex.Message),
-                    Data = null
+                    success = false,
+                    message = null,
+                    error = string.Format(AppConstants.ErrorMessage, ex.Message),
+                    data = null
                 };
             }
         }
@@ -149,20 +149,20 @@ namespace Arasva.Core.Services.Implementation
 
                 return new GlobalResponse<BorrowResponseDTO>
                 {
-                    Success = true,
-                    Message = string.Format(AppConstants.ActionSuccess),
-                    ErrorMessage = null,
-                    Data = returnBook
+                    success = true,
+                    message = string.Format(AppConstants.ActionSuccess),
+                    error = null,
+                    data = returnBook
                 };
             }
             catch (Exception ex)
             {
                 return new GlobalResponse<BorrowResponseDTO>
                 {
-                    Success = false,
-                    Message = null,
-                    ErrorMessage = string.Format(AppConstants.ErrorMessage, ex.Message),
-                    Data = null
+                    success = false,
+                    message = null,
+                    error = string.Format(AppConstants.ErrorMessage, ex.Message),
+                    data = null
                 };
             }
         }
@@ -180,10 +180,10 @@ namespace Arasva.Core.Services.Implementation
 
             return new GlobalResponse<IEnumerable<MemberBorrowHistoryDTO>>
             {
-                Success = true,
-                Message = string.Format(AppConstants.ActionSuccess),
-                ErrorMessage = null,
-                Data = history.Select(h => new MemberBorrowHistoryDTO
+                success = true,
+                message = string.Format(AppConstants.ActionSuccess),
+                error = null,
+                data = history.Select(h => new MemberBorrowHistoryDTO
                 {
                     Id = h.Id,
                     BookId = h.BookId,
@@ -193,7 +193,7 @@ namespace Arasva.Core.Services.Implementation
                     BorrowFromDate = h.BorrowFromDate,
                     BorrowToDate = h.BorrowToDate
                 }),
-                TotalCount = history.Count()
+                totalcount = history.Count()
             };
         }
     }

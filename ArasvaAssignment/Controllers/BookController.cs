@@ -20,7 +20,7 @@ namespace ArasvaAssignment.Controllers
         public async Task<IActionResult> GetAll([FromQuery] bool? isAvailable, [FromQuery] string? author)
         {
             var response = await _service.GetAllAsync(isAvailable, author);
-            return response.Success ? Ok(response) : BadRequest(response);
+            return response.success ? Ok(response) : BadRequest(response);
         }
 
         //[HttpGet]
@@ -34,7 +34,7 @@ namespace ArasvaAssignment.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var response = await _service.GetByIdAsync(id);
-            return response.Success ? Ok(response) : BadRequest(response.ErrorMessage = $"Book with ID {id} not found.");
+            return response.success ? Ok(response) : BadRequest(response.error = $"Book with ID {id} not found.");
         }
 
         [HttpPost("Add")]
@@ -50,7 +50,7 @@ namespace ArasvaAssignment.Controllers
         public async Task<IActionResult> Update(int id, BookUpdateDTO bookdto)
         {
             var response = await _service.UpdateAsync(id, bookdto);
-            return response.Success ? Ok(response) : BadRequest(response.ErrorMessage = $"Book with ID {id} not found.");
+            return response.success ? Ok(response) : BadRequest(response.error = $"Book with ID {id} not found.");
         }
     }
 }

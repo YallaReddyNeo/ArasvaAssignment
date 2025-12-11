@@ -27,10 +27,10 @@ namespace Arasva.Core.Services.Implementation
 
             return new GlobalResponse<IEnumerable<MemberFullResponseDTO>>
             {
-                Success = true,
-                Message = string.Format(AppConstants.ActionSuccess),
-                ErrorMessage = null,
-                Data = members.Select(m => new MemberFullResponseDTO
+                success = true,
+                message = string.Format(AppConstants.ActionSuccess),
+                error = null,
+                data = members.Select(m => new MemberFullResponseDTO
                 {
                     Id = m.Id,
                     Name = m.Name,
@@ -41,7 +41,7 @@ namespace Arasva.Core.Services.Implementation
                     ModifiedBy = m.ModifiedBy,
                     ModifiedDate = m.ModifiedDate
                 }),
-                TotalCount = members.Count()
+                totalcount = members.Count()
             };
         }
 
@@ -52,20 +52,20 @@ namespace Arasva.Core.Services.Implementation
             var m = await _repo.GetByIdAsync(id);
             if (m == null)
             {
-                globalResponse.Success = false;
-                globalResponse.ErrorMessage = $"Member with ID {id} not found.";
-                globalResponse.Message = string.Empty;
-                globalResponse.Data = null;
+                globalResponse.success = false;
+                globalResponse.error = $"Member with ID {id} not found.";
+                globalResponse.message = string.Empty;
+                globalResponse.data = null;
                 return globalResponse;
             }
             else
             {
                 return new GlobalResponse<MemberFullResponseDTO?>
                 {
-                    Success = true,
-                    Message = string.Format(AppConstants.ActionSuccess),
-                    ErrorMessage = null,
-                    Data = new MemberFullResponseDTO
+                    success = true,
+                    message = string.Format(AppConstants.ActionSuccess),
+                    error = null,
+                    data = new MemberFullResponseDTO
                     {
                         Id = m.Id,
                         Name = m.Name,
@@ -76,7 +76,7 @@ namespace Arasva.Core.Services.Implementation
                         ModifiedBy = m.ModifiedBy,
                         ModifiedDate = m.ModifiedDate
                     },
-                    TotalCount = 1
+                    totalcount = 1
                 };
             }                
         }
@@ -109,20 +109,20 @@ namespace Arasva.Core.Services.Implementation
 
                 return new GlobalResponse<MemberCreateResponseDTO>
                 {
-                    Success = true,
-                    Message = string.Format(AppConstants.ActionSuccess),
-                    ErrorMessage = null,
-                    Data = createdMember
+                    success = true,
+                    message = string.Format(AppConstants.ActionSuccess),
+                    error = null,
+                    data = createdMember
                 };
             }
             catch (Exception ex)
             {
                 return new GlobalResponse<MemberCreateResponseDTO>
                 {
-                    Success = false,
-                    Message = null,
-                    ErrorMessage = string.Format(AppConstants.ErrorMessage, ex.Message),
-                    Data = null
+                    success = false,
+                    message = null,
+                    error = string.Format(AppConstants.ErrorMessage, ex.Message),
+                    data = null
                 };
             }
         }
@@ -155,20 +155,20 @@ namespace Arasva.Core.Services.Implementation
 
                 return new GlobalResponse<MemberUpdateResponseDTO?>
                 {
-                    Success = true,
-                    Message = string.Format(AppConstants.ActionSuccess),
-                    ErrorMessage = null,
-                    Data = updatedMember
+                    success = true,
+                    message = string.Format(AppConstants.ActionSuccess),
+                    error = null,
+                    data = updatedMember
                 };
             }
             catch (Exception ex)
             {
                 return new GlobalResponse<MemberUpdateResponseDTO?>
                 {
-                    Success = false,
-                    Message = null,
-                    ErrorMessage = string.Format(AppConstants.ErrorMessage, ex.Message),
-                    Data = null
+                    success = false,
+                    message = null,
+                    error = string.Format(AppConstants.ErrorMessage, ex.Message),
+                    data = null
                 };
             }
         }

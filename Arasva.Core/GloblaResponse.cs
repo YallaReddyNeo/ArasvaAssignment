@@ -23,11 +23,11 @@ namespace Arasva.Core
 
     public class GlobalResponse<T>
     {
-        public bool Success { get; set; } = true;
-        public string? Message { get; set; }
-        public string? ErrorMessage { get; set; } = null;
-        public T? Data { get; set; }
-        public int? TotalCount { get; set; } = null;
+        public bool success { get; set; } = true;
+        public string? message { get; set; }
+        public string? error { get; set; } = null;
+        public T? data { get; set; }
+        public int? totalcount { get; set; } = null;
     }
 
 }

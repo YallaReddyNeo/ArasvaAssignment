@@ -29,7 +29,7 @@ namespace ArasvaAssignment.Controllers
             try
             {
                 var response = await _service.BorrowBookAsync(dto);
-                return response.Success ? Ok(response) : BadRequest(response);
+                return response.success ? Ok(response) : BadRequest(response);
             }
             catch (KeyNotFoundException ex)
             {
@@ -54,7 +54,7 @@ namespace ArasvaAssignment.Controllers
             try
             {
                 var response = await _service.ReturnBookAsync(dto);
-                return response.Success ? Ok(response) : BadRequest(response);
+                return response.success ? Ok(response) : BadRequest(response);
             }
             catch (KeyNotFoundException ex)
             {
@@ -75,7 +75,7 @@ namespace ArasvaAssignment.Controllers
             try
             {
                 var response = await _service.GetMemberHistoryAsync(memberId);
-                return response.Success ? Ok(response) : BadRequest(response);
+                return response.success ? Ok(response) : BadRequest(response);
             }
             catch (KeyNotFoundException ex)
             {

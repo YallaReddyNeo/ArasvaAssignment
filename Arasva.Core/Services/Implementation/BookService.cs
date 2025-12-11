@@ -51,11 +51,11 @@ namespace Arasva.Core.Services.Implementation
 
             return new GlobalResponse<IEnumerable<BookFullResponseDTO>>
             {
-                Success = true,
-                Message = string.Format(AppConstants.ActionSuccess),
-                ErrorMessage = null,
-                Data = data,
-                TotalCount = books.Count()
+                success = true,
+                message = string.Format(AppConstants.ActionSuccess),
+                error = null,
+                data = data,
+                totalcount = books.Count()
             };
         }
 
@@ -92,11 +92,11 @@ namespace Arasva.Core.Services.Implementation
 
             return new GlobalResponse<BookFullResponseDTO?>
             {
-                Success = true,
-                Message = string.Format(AppConstants.ActionSuccess),
-                ErrorMessage = null,
-                TotalCount = 1,
-                Data = new BookFullResponseDTO
+                success = true,
+                message = string.Format(AppConstants.ActionSuccess),
+                error = null,
+                totalcount = 1,
+                data = new BookFullResponseDTO
                 {
                     Id = b.Id,
                     Name = b.Name,
@@ -144,20 +144,20 @@ namespace Arasva.Core.Services.Implementation
 
                 return new GlobalResponse<BookCreateResponseDTO>
                 {
-                    Success = true,
-                    Message = string.Format(AppConstants.ActionSuccess),
-                    ErrorMessage = null,
-                    Data = createdBook
+                    success = true,
+                    message = string.Format(AppConstants.ActionSuccess),
+                    error = null,
+                    data = createdBook
                 };
             }
             catch (Exception ex)
             {
                 return new GlobalResponse<BookCreateResponseDTO>
                 {
-                    Success = false,
-                    Message = null,
-                    ErrorMessage = string.Format(AppConstants.ErrorMessage, ex.Message),
-                    Data = null
+                    success = false,
+                    message = null,
+                    error = string.Format(AppConstants.ErrorMessage, ex.Message),
+                    data = null
                 };
             }
         }
@@ -194,10 +194,10 @@ namespace Arasva.Core.Services.Implementation
 
                 return new GlobalResponse<BookUpdateResponseDTO?>
                 {
-                    Success = true,
-                    Message = string.Format(AppConstants.ActionSuccess),
-                    ErrorMessage = null,
-                    Data = updatedBook
+                    success = true,
+                    message = string.Format(AppConstants.ActionSuccess),
+                    error = null,
+                    data = updatedBook
                 };
 
             }
@@ -205,10 +205,10 @@ namespace Arasva.Core.Services.Implementation
             {
                 return new GlobalResponse<BookUpdateResponseDTO?>
                 {
-                    Success = false,
-                    Message = null,
-                    ErrorMessage = string.Format(AppConstants.ErrorMessage, ex.Message),
-                    Data = null
+                    success = false,
+                    message = null,
+                    error = string.Format(AppConstants.ErrorMessage, ex.Message),
+                    data = null
                 };
             }
         }

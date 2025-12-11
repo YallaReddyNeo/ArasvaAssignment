@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SQL changes\**" />
+    <Content Remove="SQL changes\**" />
+    <EmbeddedResource Remove="SQL changes\**" />
+    <None Remove="SQL changes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\URLReaderController.cs" />
     <Compile Remove="Controllers\WeatherForecastController.cs" />
     <Compile Remove="WeatherForecast.cs" />
@@ -24,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="Helper\" />
-    <Folder Include="SQL changes\" />
   </ItemGroup>
 
   <ItemGroup>
